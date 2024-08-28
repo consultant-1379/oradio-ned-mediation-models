@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+   * COPYRIGHT Ericsson 2024
+   *
+   * The copyright to the computer program(s) herein is the property of Ericsson Inc.
+   * The programs may be used and/or copied only with written
+   * permission from Ericsson Inc. or in accordance with the terms and
+   * conditions stipulated in the agreement/contract under which the
+   * program(s) have been supplied.
+******************************************************************************* -->
+<flow:FlowDefinition oss_common:lifeCycle="CURRENT"
+                     oss_common:name="ORadioCreateConnectivityInformationFlow" oss_common:ns="ORadio"
+                     oss_common:version="1.0.0" synchronicity="SYNCHRONOUS"
+                     xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow"
+                     xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <oss_common:modelCreationInfo author="Boru" creationDate="05/12/2023">
+        <oss_common:designedModel componentId="oradio-ned-mediation-models"/>
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>This flow is triggered when the ORadioConnectivityInformation MO is created.</oss_common:desc>
+
+    <flow:input name="createORadioCiInput"/>
+
+    <flow:step name="ORadioCreateCIHandler">
+        <flow:handlerTypeRef uri="model://ORadio/ORadioCreateCIHandler/1.0.0"/>
+    </flow:step>
+
+    <flow:step name="CreateSupervisionFunctionHandler">
+        <flow:handlerTypeRef uri="model://NED/CreateSupervisionFunctionHandler/1.0.0"/>
+    </flow:step>
+
+    <flow:path transaction="REQUIRED">
+        <flow:from uri="direct:createORadioCiInput"/>
+        <flow:to uri="ORadioCreateCIHandler"/>
+        <flow:to uri="CreateSupervisionFunctionHandler"/>
+    </flow:path>
+</flow:FlowDefinition>

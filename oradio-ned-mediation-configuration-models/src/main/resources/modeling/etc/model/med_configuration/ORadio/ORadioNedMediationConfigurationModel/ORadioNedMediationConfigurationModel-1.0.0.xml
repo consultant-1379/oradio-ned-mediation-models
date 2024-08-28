@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+   * COPYRIGHT Ericsson 2024
+   *
+   * The copyright to the computer program(s) herein is the property of Ericsson Inc.
+   * The programs may be used and/or copied only with written
+   * permission from Ericsson Inc. or in accordance with the terms and
+   * conditions stipulated in the agreement/contract under which the
+   * program(s) have been supplied.
+******************************************************************************* -->
+<med_configuration:MediationConfigurationDefinition
+        oss_common:lifeCycle="CURRENT" oss_common:name="ORadioNedMediationConfigurationModel"
+        oss_common:ns="ORadio" oss_common:version="1.0.0"
+        xmlns:med_configuration="urn:com:ericsson:schema:xml:oss:med_configuration"
+        xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common">
+
+    <oss_common:modelCreationInfo author="Boru"
+                                  creationDate="05/12/2023">
+        <oss_common:designedModel componentId="oradio-ned-mediation-config-model-jar" />
+    </oss_common:modelCreationInfo>
+    <oss_common:desc>CM Mediation configuration for ORadio as node type</oss_common:desc>
+
+    <med_configuration:flowInvocation
+            flowUrn="//ORadio/ORadioCreateConnectivityInformationFlow/1.0.0" id="createORadioConnectivityInformation">
+        <med_configuration:persistenceBasedInvocation
+                primaryTypeNamespace="ORADIO_MED" primaryTypeName="ORadioConnectivityInformation" operation="CREATE" />
+        <med_configuration:supersedes
+                flowInvocationId="createTopMedConnectivityInformation" />
+    </med_configuration:flowInvocation>
+
+</med_configuration:MediationConfigurationDefinition>
